@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "axios": "^1.7.2",
+    "ra-core": "^4.16.17",
+    "ra-ui-materialui": "^4.16.18",
+    "react-router-dom": "^6.23.1"
+  }
+}
