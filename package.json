@@ -1,10 +1,40 @@
 {
+  "name": "react-frontend-core",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.12.4",
-    "@material-ui/icons": "^4.11.3",
-    "axios": "^1.7.2",
-    "ra-core": "^4.16.17",
-    "ra-ui-materialui": "^4.16.18",
-    "react-router-dom": "^6.23.1"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "axios": "^0.21.1",
+    "react-router-dom": "^5.2.0",
+    "ra-core": "^3.14.3",
+    "ra-ui-materialui": "^3.14.3",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2"
+  },
+  "scripts": {
+    "start": "react-scripts start 2>&1 | tee logs/start.log",
+    "build": "react-scripts build 2>&1 | tee logs/build.log",
+    "test": "react-scripts test 2>&1 | tee logs/test.log",
+    "eject": "react-scripts eject 2>&1 | tee logs/eject.log"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
