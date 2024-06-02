@@ -1,54 +1,93 @@
-# Project Template
+# React Frontend Core
 
-This repository is a template for creating new projects. It includes a basic structure and setup to get you started quickly.
+## Getting Started
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Table of Contents
 
-- [Project Template](#project-template)
+- [React Frontend Core](#react-frontend-core)
+  - [Getting Started](#getting-started)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
+    - [Setup Project](#setup-project)
+    - [Manage Project](#manage-project)
   - [Features](#features)
   - [Contributing](#contributing)
   - [License](#license)
-  - [Project Structure](#project-structure)
 
 ## Installation
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/project-template.git
-    cd project-template
+    git clone git@github.com:ramironunes/react-frontend-core.git
+    cd react-frontend-core
     ```
 
-2. **Install the dependencies:**
+2. **Grant execute permissions to the scripts:**
     ```bash
-    # Example for Python
-    pip install -r deployment/requirements.txt
-    # Example for Node.js
-    npm install
+    chmod +x scripts/*.sh
     ```
+
+3. **Run the setup script:**
+    ```bash
+    ./scripts/manage_project.sh
+    ```
+
+   Follow the interactive menu to set up the project.
 
 ## Usage
 
-1. **Run the application:**
-    ```bash
-    # Example for Python
-    python src/main_file.py
-    # Example for Node.js
-    node src/main_file
-    ```
+The `manage_project.sh` script provides an interactive way to manage the project. It has two main sections: Setup Project and Manage Project.
 
-2. **Run the application with Docker:**
-    ```bash
-    docker-compose -f docker/docker-compose.yml up --build
-    ```
+### Setup Project
+
+Use this section for initial project setup and maintenance tasks.
+
+1. **Install Project:**
+   - Installs the project by setting up the necessary environment and dependencies.
+   - Run this if you are setting up the project for the first time.
+
+2. **Uninstall Project:**
+   - Uninstalls the project and removes all related files and dependencies.
+   - Use this to clean up the project from your system.
+
+3. **Eject Project:**
+   - Ejects the project configuration, giving you full control over the build configuration.
+   - Note: This is a one-way operation. Once you eject, you can’t go back.
+
+4. **Setup Existing Project:**
+   - Sets up an existing project by installing necessary dependencies and fixing vulnerabilities.
+   - Use this if you have cloned the project and need to prepare it for development.
+
+### Manage Project
+
+Use this section for everyday development tasks.
+
+1. **Start Project:**
+   - Starts the development server for the project.
+   - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   - The page will reload if you make edits. You will also see any lint errors in the console.
+
+2. **Stop Project:**
+   - Stops the project if it is running.
+   - This option is currently a placeholder and may require manual stopping depending on your environment.
+
+3. **Test Project:**
+   - Runs the test suite for the project.
+   - Use this to ensure your changes do not break the project.
+
+4. **Build Project:**
+   - Builds the project for production.
+   - Use this when you are ready to deploy the project.
 
 ## Features
 
 - Modular structure
 - Docker support
 - Basic CI setup with GitHub Actions
+- Interactive management script for easy project setup and operations
 
 ## Contributing
 
@@ -57,69 +96,3 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Project Structure
-
-```plaintext
-project-template/
-│
-├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   │   └── bug_report.md
-│   │   └── feature_request.md
-│   ├── PULL_REQUEST_TEMPLATE.md
-│   └── workflows/
-│       └── ci.yml
-│
-├── docs/
-│   ├── index.md
-│   ├── getting_started.md
-│   └── api_reference.md
-│
-├── src/
-│   ├── main_file.py  # Main entry point (e.g., main.py, index.js)
-│   ├── abstracts/
-│   │   └── base_abstract.py
-│   ├── configs/
-│   │   └── config.py
-│   ├── controllers/
-│   │   └── user_controller.py
-│   ├── models/
-│   │   └── user_model.py
-│   ├── modules/
-│   │   └── module_file.py
-│   ├── routes/
-│   │   └── user_routes.py
-│   ├── services/
-│   │   └── user_service.py
-│   ├── utils/
-│   │   └── date_utils.py
-│   ├── resources/
-│   │   ├── templates/
-│   │   │   └── base.html
-│   │   └── static/
-│   │       └── style.css
-│   ├── components/
-│   │   ├── Button.jsx  # Example React component
-│   │   ├── Modal.jsx  # Example React component
-│   │   └── UserList.jsx  # Example React component
-│
-├── tests/
-│   ├── test_main_file.py  # Test file for main (e.g., test_main.py, test_main.js)
-│   └── test_module_file.py  # Test file for module (e.g., test_example.py, test_example.js)
-│
-├── deployment/
-│   ├── requirements.txt  # Dependencies file
-│
-├── docker/
-│   ├── Dockerfile
-│   ├── docker-compose.yml
-│
-├── .gitignore
-├── .editorconfig
-├── LICENSE
-├── README.md
-├── setup.py  # Setup script for Python or other relevant configuration file
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-└── CHANGELOG.md
