@@ -2,7 +2,10 @@
 # @Author: Ramiro Luiz Nunes
 # @Date:   2024-05-30 22:22:29
 # @Last Modified by:   Ramiro Luiz Nunes
-# @Last Modified time: 2024-05-30 22:36:34
+# @Last Modified time: 2024-06-02 19:54:00
+
+# Import the functions from utils.sh
+source scripts/utils.sh
 
 # Add .editorconfig
 echo -e "${MAGENTA}Adding .editorconfig...${NC}"
