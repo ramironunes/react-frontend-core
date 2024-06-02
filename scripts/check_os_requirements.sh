@@ -1,30 +1,23 @@
 #!/bin/bash
 # @Author: Ramiro Luiz Nunes
-# @Date:   2024-05-30 22:22:00
+# @Date:   2024-05-30 22:58:44
 # @Last Modified by:   Ramiro Luiz Nunes
-# @Last Modified time: 2024-05-30 22:43:21
+# @Last Modified time: 2024-06-02 19:54:47
 
-# Define some ANSI color codes
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-CYAN='\033[0;36m'
-NC='\033[0m' # No Color
+# Import the functions from utils.sh
+source scripts/utils.sh
 
 # Check if Node.js is installed
-if ! command -v node &> /dev/null
-then
+if ! command_exists node; then
     echo -e "${RED}Node.js is not installed. Installing Node.js...${NC}"
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        echo -e "${CYAN}Installing Node.js...${NC}"
-        sudo apt update
-        sudo apt install -y nodejs npm
+        sudo apt-get remove -y nodejs libnode-dev
+        sudo apt-get autoremove -y
+        curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+        sudo apt-get install -y nodejs
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        if ! command -v brew &> /dev/null; then
-            echo -e "${CYAN}Homebrew is not installed. Installing Homebrew...${NC}"
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        fi
-        echo -e "${CYAN}Installing Node.js via Homebrew...${NC}"
-        brew install node
+        brew install node@14
+        brew link --overwrite node@14
     else
         echo -e "${RED}Unsupported OS. Please install Node.js manually.${NC}"
         exit 1
@@ -32,28 +25,57 @@ then
 fi
 
 # Check if npm is installed
-if ! command -v npm &> /dev/null
-then
-    echo -e "${RED}npm is not installed. Installing npm...${NC}"
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        echo -e "${CYAN}Installing npm...${NC}"
-        sudo apt update
-        sudo apt install -y npm
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
-        echo -e "${CYAN}Installing npm via Homebrew...${NC}"
-        brew install npm
-    else
-        echo -e "${RED}Unsupported OS. Please install npm manually.${NC}"
-        exit 1
-    fi
+if ! command_exists npm; then
+    echo -e "${RED}npm is not installed. Please install npm.${NC}"
+    exit 1
 fi
 
 # Check if npx is available
-if ! command -v npx &> /dev/null
-then
+if ! command_exists npx; then
     echo -e "${RED}npx is not available. Updating npm to get npx...${NC}"
-    echo -e "${CYAN}Updating npm...${NC}"
     npm install -g npm
+fi
+
+# Ensure correct Node.js version
+REQUIRED_NODE_VERSION="14.0.0"
+CURRENT_NODE_VERSION=$(node -v | cut -d'v' -f2)
+
+if [[ "$(printf '%s\n' "$REQUIRED_NODE_VERSION" "$CURRENT_NODE_VERSION" | sort -V | head -n1)" != "$REQUIRED_NODE_VERSION" ]]; then 
+    echo -e "${RED}Node.js version is less than ${REQUIRED_NODE_VERSION}.${NC}"
+    echo -e "${RED}Do you want to uninstall the current version and install Node.js 14? (y/n)${NC}"
+    read -r confirmation
+    if [ "$confirmation" != "y" ]; then
+        echo -e "${RED}Please update Node.js to version 14 or higher to proceed.${NC}"
+        exit 1
+    fi
+
+    # Uninstall current Node.js
+    echo -e "${CYAN}Uninstalling current Node.js...${NC}"
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sudo apt-get remove -y nodejs libnode-dev
+        sudo apt-get autoremove -y
+        curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        brew uninstall node
+        brew install node@14
+        brew link --overwrite node@14
+    else
+        echo -e "${RED}Unsupported OS. Please install Node.js manually.${NC}"
+        exit 1
+    fi
+
+    # Verify the new installation
+    if ! command_exists node; then
+        echo -e "${RED}Failed to install Node.js 14 or higher. Please install it manually.${NC}"
+        exit 1
+    fi
+
+    CURRENT_NODE_VERSION=$(node -v | cut -d'v' -f2)
+    if [[ "$(printf '%s\n' "$REQUIRED_NODE_VERSION" "$CURRENT_NODE_VERSION" | sort -V | head -n1)" != "$REQUIRED_NODE_VERSION" ]]; then 
+        echo -e "${RED}Failed to install Node.js 14 or higher. Please install it manually.${NC}"
+        exit 1
+    fi
 fi
 
 echo -e "${GREEN}All OS requirements are met.${NC}"
