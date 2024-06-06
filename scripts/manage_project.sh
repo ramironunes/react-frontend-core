@@ -2,7 +2,7 @@
 # @Author: Ramiro Luiz Nunes
 # @Date:   2024-06-02 17:59:43
 # @Last Modified by:   Ramiro Luiz Nunes
-# @Last Modified time: 2024-06-06 10:47:14
+# @Last Modified time: 2024-06-06 14:38:24
 
 # Import the functions from utils.sh
 source scripts/utils.sh
@@ -162,6 +162,7 @@ help_menu() {
             echo "2. Uninstall Project - Uninstalls the project and removes all related files and dependencies."
             echo "3. Eject Project - Ejects the project configuration, giving you full control over the build configuration."
             echo "4. Setup Existing Project - Sets up an existing project by installing necessary dependencies and fixing vulnerabilities."
+            echo "5. Update Dependencies - Installs new dependencies or updates existing ones."
             print_separator
             main_menu
             ;;
