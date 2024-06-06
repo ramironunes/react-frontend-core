@@ -47,19 +47,28 @@ Use this section for initial project setup and maintenance tasks.
 
 1. **Install Project:**
    - Installs the project by setting up the necessary environment and dependencies.
+   - You can choose between JavaScript and TypeScript templates during installation.
    - Run this if you are setting up the project for the first time.
 
 2. **Uninstall Project:**
-   - Uninstalls the project and removes all related files and dependencies.
+   - Uninstalls the project and optionally removes Node.js and npm.
    - Use this to clean up the project from your system.
 
-3. **Eject Project:**
+3. **Uninstall Dependencies:**
+   - Uninstalls only the project dependencies without deleting the project files.
+   - Use this if you need to reset the dependencies.
+
+4. **Eject Project:**
    - Ejects the project configuration, giving you full control over the build configuration.
    - Note: This is a one-way operation. Once you eject, you can’t go back.
 
-4. **Setup Existing Project:**
+5. **Setup Existing Project:**
    - Sets up an existing project by installing necessary dependencies and fixing vulnerabilities.
    - Use this if you have cloned the project and need to prepare it for development.
+
+6. **Install Dependencies:**
+   - Installs any new dependencies listed in the package.json.
+   - Use this to update or add new dependencies after the initial setup.
 
 ### Manage Project
 

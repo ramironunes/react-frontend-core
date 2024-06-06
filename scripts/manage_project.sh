@@ -2,7 +2,7 @@
 # @Author: Ramiro Luiz Nunes
 # @Date:   2024-06-02 17:59:43
 # @Last Modified by:   Ramiro Luiz Nunes
-# @Last Modified time: 2024-06-02 20:30:40
+# @Last Modified time: 2024-06-06 14:38:24
 
 # Import the functions from utils.sh
 source scripts/utils.sh
@@ -53,9 +53,11 @@ setup_project_menu() {
     echo "Setup Project:"
     echo "1. Install Project"
     echo "2. Uninstall Project"
-    echo "3. Eject Project"
-    echo "4. Setup Existing Project"
-    echo "5. Back to Main Menu"
+    echo "3. Uninstall Dependencies"
+    echo "4. Eject Project"
+    echo "5. Setup Existing Project"
+    echo "6. Install Dependencies"
+    echo "7. Back to Main Menu"
 
     read -p "Enter your choice: " setup_choice
 
@@ -72,15 +74,25 @@ setup_project_menu() {
             ;;
         3)
             print_separator
-            npm run eject
+            ./scripts/uninstall_dependencies.sh
             main_menu
             ;;
         4)
             print_separator
-            ./scripts/setup_project.sh
+            npm run eject
             main_menu
             ;;
         5)
+            print_separator
+            ./scripts/setup_project.sh
+            main_menu
+            ;;
+        6)
+            print_separator
+            npm install
+            main_menu
+            ;;
+        7)
             print_separator
             main_menu
             ;;
@@ -150,6 +162,7 @@ help_menu() {
             echo "2. Uninstall Project - Uninstalls the project and removes all related files and dependencies."
             echo "3. Eject Project - Ejects the project configuration, giving you full control over the build configuration."
             echo "4. Setup Existing Project - Sets up an existing project by installing necessary dependencies and fixing vulnerabilities."
+            echo "5. Update Dependencies - Installs new dependencies or updates existing ones."
             print_separator
             main_menu
             ;;
