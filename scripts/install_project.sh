@@ -2,7 +2,7 @@
 # @Author: Ramiro Luiz Nunes
 # @Date:   2024-05-30 22:02:41
 # @Last Modified by:   Ramiro Luiz Nunes
-# @Last Modified time: 2024-06-06 10:47:28
+# @Last Modified time: 2024-06-06 13:36:12
 
 # Import the functions from utils.sh
 source scripts/utils.sh
@@ -59,10 +59,11 @@ cd ..
 cp -r ${TEMP_DIR}/* .
 rm -rf ${TEMP_DIR}
 
-# Apply the OpenSSL legacy provider fix
-sed -i 's/"start": "react-scripts start"/"start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start"/' package.json
-sed -i 's/"build": "react-scripts build"/"build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build"/' package.json
-sed -i 's/"test": "react-scripts test"/"test": "NODE_OPTIONS=--openssl-legacy-provider react-scripts test"/' package.json
+# Apply the OpenSSL legacy provider fix with logging
+sed -i 's|"start": "react-scripts start"|"start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start 2>&1 | tee logs/start.log"|' package.json
+sed -i 's|"build": "react-scripts build"|"build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build 2>&1 | tee logs/build.log"|' package.json
+sed -i 's|"test": "react-scripts test"|"test": "NODE_OPTIONS=--openssl-legacy-provider react-scripts test 2>&1 | tee logs/test.log"|' package.json
+sed -i 's|"eject": "react-scripts eject"|"eject": "react-scripts eject 2>&1 | tee logs/eject.log"|' package.json
 
 print_separator
 

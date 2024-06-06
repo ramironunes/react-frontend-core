@@ -17,10 +17,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
-    "test": "NODE_OPTIONS=--openssl-legacy-provider react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start 2>&1 | tee logs/start.log",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build 2>&1 | tee logs/build.log",
+    "test": "NODE_OPTIONS=--openssl-legacy-provider react-scripts test 2>&1 | tee logs/test.log",
+    "eject": "react-scripts eject 2>&1 | tee logs/eject.log"
   },
   "eslintConfig": {
     "extends": [
