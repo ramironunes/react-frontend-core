@@ -2,10 +2,26 @@
 # @Author: Ramiro Luiz Nunes
 # @Date:   2024-05-30 22:02:41
 # @Last Modified by:   Ramiro Luiz Nunes
-# @Last Modified time: 2024-06-06 22:47:51
+# @Last Modified time: 2024-06-09 20:25:03
 
 # Import the functions from utils.sh
-source scripts/utils.sh
+source $(dirname "$0")/utils.sh
+
+# Function to get and confirm the project name
+get_project_name() {
+    while true; do
+        read -p "Enter the name of the React project: " PROJECT_NAME
+        echo "You entered: $PROJECT_NAME"
+        read -p "Is this correct? (y/n): " confirm
+        if [ "$confirm" == "y" ]; then
+            echo "$PROJECT_NAME" > ~/.react_project_name
+            break
+        fi
+    done
+}
+
+# Get the project name
+get_project_name
 
 # Check if the project is already installed
 if [ -d "node_modules" ] || [ -f "package.json" ]; then
@@ -45,7 +61,7 @@ exec 2>&1
 
 # Check OS requirements
 echo -e "${YELLOW}Checking OS requirements...${NC}"
-if ! source scripts/check_os_requirements.sh; then
+if ! source $(dirname "$0")/check_os_requirements.sh; then
     echo -e "${RED}OS requirements check failed. See ${LOG_FILE} for details.${NC}"
     exit 1
 fi
@@ -70,8 +86,11 @@ cd ..
 cp -r ${TEMP_DIR}/* .
 rm -rf ${TEMP_DIR}
 
+# Read the project name from the file
+PROJECT_NAME=$(cat ~/.react_project_name)
+
 # Update package.json with the correct project name
-sed -i 's/"name": "temp-react-setup"/"name": "react-frontend-core"/' package.json
+sed -i "s/\"name\": \"temp-react-setup\"/\"name\": \"$PROJECT_NAME\"/" package.json
 
 # Apply the OpenSSL legacy provider fix with logging
 sed -i 's|"start": "react-scripts start"|"start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start 2>&1 | tee logs/start.log"|' package.json
@@ -83,7 +102,7 @@ print_separator
 
 # Setup configuration files
 echo -e "${YELLOW}Setting up configuration files...${NC}"
-if ! source scripts/setup_utils.sh; then
+if ! source $(dirname "$0")/setup_utils.sh; then
     echo -e "${RED}Setup configuration failed. See ${LOG_FILE} for details.${NC}"
     exit 1
 fi
