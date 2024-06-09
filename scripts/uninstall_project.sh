@@ -2,13 +2,13 @@
 # @Author: Ramiro Luiz Nunes
 # @Date:   2024-05-30 23:35:58
 # @Last Modified by:   Ramiro Luiz Nunes
-# @Last Modified time: 2024-06-02 20:10:24
+# @Last Modified time: 2024-06-09 20:25:17
 
 # Import the functions from utils.sh
-source scripts/utils.sh
+source $(dirname "$0")/utils.sh
 
-# Project name
-PROJECT_NAME="react-frontend-core"
+# Load the project name from the file
+PROJECT_NAME=$(cat ~/.react_project_name)
 
 # Confirm the uninstallation
 echo -e "${RED}Are you sure you want to uninstall the project ${PROJECT_NAME}? This action cannot be undone. (y/n)${NC}"
@@ -55,9 +55,10 @@ print_separator
 echo -e "${GREEN}Project ${PROJECT_NAME} and its dependencies have been uninstalled.${NC}"
 print_separator
 
-# Remove the log file if the uninstallation was successful
-rm -f ${LOG_FILE}
-
-# Return to the main menu
-source manage_project.sh
-main_menu
+# Return to the main menu if the script is executed from the main project
+if [ -n "$PROJECT_ROOT" ] && [ -n "$SUBMODULE_NAME" ]; then
+  source "$PROJECT_ROOT/modules/scripts-core/src/main.sh"
+  main_menu
+else
+  echo "Uninstallation complete. Please navigate to the main project directory and re-run the manage_project.sh script if necessary."
+fi
