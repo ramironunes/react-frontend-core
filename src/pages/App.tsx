@@ -2,7 +2,7 @@
  * @Author: Ramiro Luiz Nunes
  * @Date:   2024-06-06 20:01:10
  * @Last Modified by:   Ramiro Luiz Nunes
- * @Last Modified time: 2024-06-09 13:36:00
+ * @Last Modified time: 2024-06-09 14:08:31
  */
 
 import React from 'react';
@@ -15,7 +15,7 @@ function App() {
       <header className="app-header">
         <img src={logo} className="app-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Edit <code>src/pages/App.tsx</code> and save to reload.
         </p>
         <a
           className="app-link"

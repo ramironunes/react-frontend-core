@@ -2,12 +2,12 @@
  * @Author: Ramiro Luiz Nunes
  * @Date:   2024-06-06 19:58:10
  * @Last Modified by:   Ramiro Luiz Nunes
- * @Last Modified time: 2024-06-09 13:33:05
+ * @Last Modified time: 2024-06-09 14:09:16
  */
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './resources/css/index.css';
+import './assets/css/index.css';
 import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
 
