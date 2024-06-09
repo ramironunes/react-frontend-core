@@ -2,10 +2,10 @@
 # @Author: Ramiro Luiz Nunes
 # @Date:   2024-06-02 17:59:43
 # @Last Modified by:   Ramiro Luiz Nunes
-# @Last Modified time: 2024-06-02 20:30:40
+# @Last Modified time: 2024-06-09 20:06:01
 
 # Import the functions from utils.sh
-source scripts/utils.sh
+source $(dirname "$0")/utils.sh
 
 # Print a colorful header
 echo -e "${GREEN}================================================================================${NC}"
@@ -62,12 +62,12 @@ setup_project_menu() {
     case $setup_choice in
         1)
             print_separator
-            ./scripts/install_project.sh
+            $(dirname "$0")/install_project.sh
             main_menu
             ;;
         2)
             print_separator
-            ./scripts/uninstall_project.sh
+            $(dirname "$0")/uninstall_project.sh
             main_menu
             ;;
         3)
@@ -77,7 +77,7 @@ setup_project_menu() {
             ;;
         4)
             print_separator
-            ./scripts/setup_project.sh
+            $(dirname "$0")/setup_project.sh
             main_menu
             ;;
         5)
