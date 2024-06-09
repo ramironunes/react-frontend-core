@@ -2,10 +2,10 @@
 # @Author: Ramiro Luiz Nunes
 # @Date:   2024-05-30 22:58:44
 # @Last Modified by:   Ramiro Luiz Nunes
-# @Last Modified time: 2024-06-02 19:54:47
+# @Last Modified time: 2024-06-09 20:09:36
 
 # Import the functions from utils.sh
-source scripts/utils.sh
+source $(dirname "$0")/utils.sh
 
 # Check if Node.js is installed
 if ! command_exists node; then
