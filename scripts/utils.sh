@@ -2,7 +2,7 @@
 # @Author: Ramiro Luiz Nunes
 # @Date:   2024-05-30 22:30:52
 # @Last Modified by:   Ramiro Luiz Nunes
-# @Last Modified time: 2024-06-02 20:32:12
+# @Last Modified time: 2024-06-09 20:21:30
 
 # Utility functions
 
