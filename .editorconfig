@@ -9,7 +9,7 @@ end_of_line = lf
 insert_final_newline = true
 
 # 2 space indentation for JavaScript and JSX
-[*.{js,jsx}]
+[*.{js,jsx,ts,tsx}]
 indent_style = space
 indent_size = 2
 
